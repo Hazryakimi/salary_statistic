@@ -1,0 +1,49 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv(r'C:\Users\Reikonen\Downloads\Python Data\testSalaryStats.csv',sep=',')
+#print(df)
+
+#read_data.head(n=5)
+
+# block 1 - simple stats
+mean1 = df['Salary'].mean() #find mean in salary column
+sum1 = df['Salary'].sum() #find sum in salary column
+max1 = df['Salary'].max() #find maximum value in salary column
+min1 = df['Salary'].min() #find minimum value in salary column
+count1 = df['Salary'].count() #find total count of salary column
+median1 = df['Salary'].median() #find median in salary column
+std1 = df['Salary'].std() #find standarddeviation in salary column
+var1 = df['Salary'].var()  #find variance in salary column
+
+# block 2 - group by
+groupby_sum1 = df.groupby(['Country'],sort = False).sum()  #find total of each country and sort by descending order
+groupby_count1 = df.groupby(['Country']).count() #find total count of entity in each country 
+
+
+# print block 1
+print ('Mean salary: ' + str(mean1))
+print ('Sum of salaries: ' + str(sum1))
+print ('Max salary: ' + str(max1))
+print ('Min salary: ' + str(min1))
+print ('Count of salaries: ' + str(count1))
+print ('Median salary: ' + str(median1))
+print ('Std of salaries: ' + str(std1))
+print ('Var of salaries: ' + str(var1))
+
+# print block 2
+print ('Sum of values, grouped by the Country: ' + str(groupby_sum1))
+print ('Count of values, grouped by the Country: ' + str(groupby_count1))
+
+
+#Salary ranking and sorting 
+df["Rank"] =  df["Salary"].rank(ascending = False) #give rank salary of each person 
+
+df.sort_values("Salary", inplace = True,ascending = False) #rank salary of each person and sort from highest to lowest
+get_rank = df.head(5) #get top 5 rank 
+get_highest_country = groupby_sum1.head(1) #get top country with highest salary in total
+df.plot(x ='Name', y='Salary', kind = 'scatter') #plot the salary graph 
+plt.show()
+print(df)
+print(get_rank)
+print(get_highest_country)
