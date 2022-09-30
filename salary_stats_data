@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv(r'C:\Users\Reikonen\Downloads\Python Data\testSalaryStats.csv',sep=',')
+df = pd.read_csv(r'your file path \testSalaryStats.csv',sep=',')
 #print(df)
 
 #read_data.head(n=5)
